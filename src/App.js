@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles, { AppContainer } from './GlobalStyles'
+import { Navbar, Footer } from './components';
+import { Books, BookDetails, Cart, ThankU4Shopping } from './pages';
+import { Hero } from './containers';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const theme = {
+    colors: {
+        primary: '#5C7AEA',
+        very_dark: '#000000',
+        dark: '#303841',
+        less_dark: '#787A91',
+        bright: '#EEEEEE'
+    },
+
+    button: {
+        heroBtnPadding: '10px 20px'
+    }
 }
 
-export default App;
+const App = () => {
+    return <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <AppContainer>
+            <Navbar />
+            <Routes>
+                <Route path="/" exact element={<Hero />} />
+                <Route path="/books" element={<Books />} />
+                <Route path="/books/:productId" element={<BookDetails />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<ThankU4Shopping />} />
+            </Routes>
+            <Footer />
+        </AppContainer>
+    </ThemeProvider>
+}
+
+export default App
