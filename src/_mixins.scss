@@ -1,0 +1,5 @@
+@mixin device($max_width) {
+    @media only screen and (max-width: $max_width) {
+        @content
+    }
+}

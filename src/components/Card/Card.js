@@ -1,21 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { CardContainer, ImageContainer, BookImage, BookInfo, BookName, BookPrice } from './Card.styled';
+import './Card.scss'
 
 const Card = ({ book }) => {
     const { image, title, price, id } = book;
 
     return (
         <Link to={`${id}`}>
-            <CardContainer>
-                <ImageContainer>
-                    <BookImage src={image} />
-                </ImageContainer>
-                <BookInfo>
-                    <BookName>{title}</BookName>
-                    <BookPrice>Rs. {price}</BookPrice>
-                </BookInfo>
-            </CardContainer>
+            <div className='card__container'>
+                <div className='card__image--container'>
+                    <img src={image} />
+                </div>
+                <div className='card__book--info'>
+                    <h2>{title}</h2>
+                    <span>&#8377; {price}</span>
+                </div>
+            </div>
         </Link>
     )
 }

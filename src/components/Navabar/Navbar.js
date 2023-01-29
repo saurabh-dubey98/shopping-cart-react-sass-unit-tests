@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { FaBars, FaTimes, FaShoppingCart } from 'react-icons/fa'
-import { Nav, NavContainer, NavLogo, NavIcon, MobileMenuIcons, Menu, NavItem, NavLink, CartIcon } from './Navbar.styled'
+import { Link, NavLink } from 'react-router-dom';
+import { FaBars, FaTimes, FaShoppingCart, FaBook } from 'react-icons/fa'
+
+import './Navbar.scss'
 
 const Navbar = () => {
     const [mobileMenuToggle, setMobileMenuToggle] = useState(false);
@@ -10,38 +12,38 @@ const Navbar = () => {
     }
 
     return (
-        <Nav>
-            <NavContainer>
+        <nav className='navbar'>
+            <div className='navbar__container'>
 
-                <NavLogo to="/" onClick={() => setMobileMenuToggle(false)}>
-                    <NavIcon />
-                    BOOKS
-                </NavLogo>
+                <Link className='navbar__logo' to="/" onClick={() => setMobileMenuToggle(false)}>
+                    <FaBook className='icon' />
+                    Books
+                </Link>
 
-                <MobileMenuIcons onClick={mobileMenuOpenHandler}>
+                <div className='navbar__menu--icons' onClick={mobileMenuOpenHandler}>
                     {mobileMenuToggle ? <FaTimes /> : <FaBars />}
-                </MobileMenuIcons>
+                </div>
 
-                <Menu onClick={mobileMenuOpenHandler} toggle={mobileMenuToggle}>
-                    <NavItem>
-                        <NavLink to='/'>
+                <ul onClick={mobileMenuOpenHandler} toggle={mobileMenuToggle} className={`navbar__links--container ${mobileMenuToggle ? 'mobile__nav--active' : ''}`}>
+                    <li>
+                        <NavLink className={({ isActive }) => isActive ? 'nav__link--active' : 'nav__link--deactivate'} to='/'>
                             Home
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink to='/books'>
+                    </li>
+                    <li>
+                        <NavLink className={({ isActive }) => isActive ? 'nav__link--active' : 'nav__link--deactivate'} to='/books'>
                             Books
                         </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink to='/cart'>
-                            <CartIcon />
+                    </li>
+                    <li>
+                        <NavLink className={({ isActive }) => isActive ? 'nav__link--active' : 'nav__link--deactivate'} to='/cart'>
+                            <FaShoppingCart className='icon' />
                             Cart
                         </NavLink>
-                    </NavItem>
-                </Menu>
-            </NavContainer>
-        </Nav >
+                    </li>
+                </ul>
+            </div>
+        </nav>
     )
 }
 

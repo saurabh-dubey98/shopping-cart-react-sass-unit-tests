@@ -1,10 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
-import GlobalStyles, { AppContainer } from './GlobalStyles'
+import { AppContainer } from './GlobalStyles'
 import { Navbar, Footer } from './components';
 import { Books, BookDetails, Cart, ThankU4Shopping } from './pages';
 import { Hero } from './containers';
+
+import './App.scss'
 
 const theme = {
     colors: {
@@ -22,7 +24,6 @@ const theme = {
 
 const App = () => {
     return <ThemeProvider theme={theme}>
-        <GlobalStyles />
         <AppContainer>
             <Navbar />
             <Routes>
