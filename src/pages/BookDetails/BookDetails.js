@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaCheck } from 'react-icons/fa';
+import { HiArrowCircleRight } from 'react-icons/hi';
 import { data } from '../../data/data';
-import { MainConatiner, BookImage, BookDetailContent, BookName, BookPrice, BookDescription, Image, Hr } from './BookDetails.styled';
 import { Button } from '../../GlobalStyles';
 import { addToCart } from '../../app/cart/cartSlice';
+
+import './BookDetails.scss'
 
 const BookDetails = () => {
     const { productId } = useParams();
     const [isInCart, setIsInCart] = useState(null);
     const inCart = useSelector(state => state.cart);
     const dispatch = useDispatch();
+    const goToCart = useNavigate()
     const { title, image, price, desc } = data.find(element => element.id == productId);
 
     const cartData = inCart.find(i => i.id == productId);
@@ -35,26 +38,34 @@ const BookDetails = () => {
         }
     }
 
-    return <MainConatiner>
-        <BookImage>
-            <Image src={image} />
-        </BookImage>
-        <BookDetailContent>
-            <BookName>
+    return <section className='bookDetails__container'>
+        <div className='bookImage__container'>
+            <img src={image} />
+        </div>
+        <div className='book__content'>
+            <h2>
                 {title}
-            </BookName>
-            <BookPrice>
-                Rs. {price}
-            </BookPrice>
-            <Hr />
-            <BookDescription>
+            </h2>
+            <h3>
+                &#8377; {price}
+            </h3>
+            <hr />
+            <p>
                 {desc}
-            </BookDescription>
-            <Button pd="10px 20px" fontSize="1rem" bg="#5C7AEA" color="#EEEEEE" onClick={addToCartHandler}>
-                {isInCart ? <FaCheck /> : "Add to cart"}
-            </Button>
-        </BookDetailContent>
-    </MainConatiner>
+            </p>
+
+            <div className='addToCart__button--container'>
+                {/* <button onClick={addToCartHandler} disabled={isInCart} className='bookDetails__addToCart--btn'>
+                    {isInCart ? <FaCheck /> : "Add to cart"}
+                </button> */}
+                {!isInCart && <button onClick={addToCartHandler} disabled={isInCart} className='bookDetails__addToCart--btn'>
+                    Add to cart
+                </button>}
+
+                {isInCart && <button onClick={() => goToCart('/cart')} className='bookDetails__goToCart--btn'>Go to cart <HiArrowCircleRight className='icon' /></button>}
+            </div>
+        </div>
+    </section>
 }
 
 export default BookDetails

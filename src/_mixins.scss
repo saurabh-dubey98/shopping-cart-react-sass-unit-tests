@@ -1,5 +1,27 @@
+@import './variables';
+
 @mixin device($max_width) {
     @media only screen and (max-width: $max_width) {
         @content
     }
+}
+
+;
+
+@mixin button() {
+    color: white;
+    background-color: $primary-text;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: 300ms;
+
+    &:hover {
+        background-color: #6885ee
+    }
+
+    @content
 }

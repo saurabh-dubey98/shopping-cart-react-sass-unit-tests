@@ -1,10 +1,8 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components'
-import { AppContainer } from './GlobalStyles'
-import { Navbar, Footer } from './components';
-import { Books, BookDetails, Cart, ThankU4Shopping } from './pages';
-import { Hero } from './containers';
+import { Navbar } from './components';
+import { Books, BookDetails, Cart, ThankU4Shopping, Home } from './pages';
 
 import './App.scss'
 
@@ -24,17 +22,16 @@ const theme = {
 
 const App = () => {
     return <ThemeProvider theme={theme}>
-        <AppContainer>
-            <Navbar />
+        <Navbar />
+        <main className='app__container'>
             <Routes>
-                <Route path="/" exact element={<Hero />} />
+                <Route path="/" exact element={<Home />} />
                 <Route path="/books" element={<Books />} />
                 <Route path="/books/:productId" element={<BookDetails />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<ThankU4Shopping />} />
             </Routes>
-            <Footer />
-        </AppContainer>
+        </main>
     </ThemeProvider>
 }
 

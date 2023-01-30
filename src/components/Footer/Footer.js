@@ -1,11 +1,10 @@
-import React from 'react'
-import { FooterSection, Span } from './Footer.styled'
+import './Footer.scss'
 
 const Footer = () => {
     return (
-        <FooterSection>
-            -- | Developed By <Span>Saurabh Dubey. </Span>| --
-        </FooterSection>
+        <footer>
+            Developed By <span>Saurabh Dubey</span>
+        </footer>
     )
 }
 

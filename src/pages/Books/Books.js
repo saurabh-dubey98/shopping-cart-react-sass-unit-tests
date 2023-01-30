@@ -1,12 +1,12 @@
-import React from 'react'
 import Card from "../../components/Card/Card";
 import { data } from '../../data/data';
-import { BooksContainer } from './Books.styled';
+
+import './Books.scss'
 
 const Books = () => {
-    return <BooksContainer>
+    return <div className='books__container'>
         {data.map(book => <Card key={book.id} book={book} />)}
-    </BooksContainer>
+    </div>
 }
 
 export default Books

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+@import '../../mixins';
 
-export const BooksContainer = styled.div`
+.books__container {
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
@@ -8,10 +8,11 @@ export const BooksContainer = styled.div`
     margin: 2.5rem 0;
     padding: 0 2rem;
 
-    @media screen and (max-width: 768px) {
+    @include device(768px) {
         grid-template-columns: repeat(2, auto);
     }
-    @media screen and (max-width: 680px) {
+
+    @include device(680px) {
         grid-template-columns: repeat(1, auto);
     }
-`
+}

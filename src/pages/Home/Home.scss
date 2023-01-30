@@ -1,0 +1,97 @@
+@import '../../mixins';
+@import '../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+.home__container {
+    position: relative;
+    width: 100%;
+    background-image: url("https://images.unsplash.com/photo-1519791883288-dc8bd696e667?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1;
+    padding-top: 6rem;
+    margin-top: -3rem;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    div {
+        width: 100%;
+        max-width: 800px;
+        margin: 8rem auto 0 auto;
+        padding: 0 30px;
+        font-family: 'Aboreto', cursive;
+
+        h1 {
+            font-family: inherit;
+            color: rgba(255, 255, 255, 0.819);
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 1.3rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            position: relative;
+
+            @include device(760px) {
+                text-align: center;
+                font-size: 3rem;
+            }
+
+            @include device(360px) {
+                font-size: 2.5rem;
+            }
+
+            @include device(316px) {
+                font-size: 2rem;
+            }
+        }
+
+        .home__action--btn {
+            font-family: inherit;
+            background-color: $primary-text;
+            color: rgba(255, 255, 255, 0.819);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 7px 20px;
+            border-radius: 50px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-out;
+            display: flex;
+            align-items: center;
+            width: max-content;
+            position: relative;
+
+            &:hover {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+                letter-spacing: 0.2px;
+            }
+
+            @include device(768px) {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            @include device(316px) {
+                font-size: 0.8rem;
+            }
+
+            .icon {
+                width: 1.1rem;
+                height: 1.1rem;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+
+
+}
