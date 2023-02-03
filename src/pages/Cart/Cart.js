@@ -1,47 +1,54 @@
-import React, { useEffect } from 'react'
-import { CartItem } from "../../components";
+import { useEffect, useMemo } from 'react'
+import { HiArrowCircleLeft } from 'react-icons/hi'
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { CartItem } from "../../components";
 import { setTotalAmount } from '../../app/cart/totalAmountSlice';
-import { CartContainer, CartItems, TotalAmount, CheckOutButton, Checkout, Span, NoItems, GoShop } from './Cart.styled';
+
 import { data } from '../../data/data';
+import './Cart.scss'
+
 const Cart = () => {
     const cartItems = useSelector(state => state.cart);
     const totalAmount = useSelector(state => state.total);
     const dispatch = useDispatch();
-    let total = 0;
-    cartItems.forEach(i => {
-        data.forEach(j => {
-            if (i.id == j.id) {
-                total = total + (i.bookQty * j.price)
-            }
+    // let total = 0;
+    const total = useMemo(() => {
+        let amount = 0
+        cartItems.forEach(i => {
+            data.forEach(j => {
+                if (i.id == j.id) {
+                    amount = amount + (i.bookQty * j.price)
+                }
+            })
         })
-    })
-    console.log(cartItems);
+        return amount
+    }, [data, cartItems])
+
     useEffect(() => {
         dispatch(setTotalAmount({ total: total }))
     }, [total])
 
     if (cartItems.length === 0) {
-        return <NoItems>:( No item
-            <GoShop to='/books'>Go back Shopping</GoShop>
-        </NoItems>
+        return <div className='no__items'>:( No item
+            <Link className='go__back--shopBtn' to='/books'><HiArrowCircleLeft /> Go back Shopping</Link>
+        </div>
     }
 
-    return <CartContainer>
-
-        <CartItems>
+    return <div className='cart__container'>
+        <div className='cart__items'>
             {cartItems.map(data => <CartItem key={data.id} id={data.id} qty={data.bookQty} />)}
-        </CartItems>
-        <Checkout>
-            <TotalAmount>
+        </div>
+        <div className='checkout'>
+            <h4>
                 Total:
-                <Span>Rs.{totalAmount}</Span>
-            </TotalAmount>
-            <CheckOutButton to="/checkout">
+                <span>Rs.{totalAmount}</span>
+            </h4>
+            <button className='checkout__btn' to="/checkout">
                 Checkout
-            </CheckOutButton>
-        </Checkout>
-    </CartContainer>
+            </button>
+        </div>
+    </div>
 }
 
 export default Cart

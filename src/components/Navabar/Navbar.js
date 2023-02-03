@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaShoppingCart, FaBook } from 'react-icons/fa'
 

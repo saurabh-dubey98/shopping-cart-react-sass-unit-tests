@@ -1,0 +1,91 @@
+.cart-item-container {
+    max-width: 750px;
+    height: 150px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+
+    .cartItem__image--container {
+        height: 100%;
+        padding: 5px;
+        margin-right: 10px;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+
+    .cartItem__name-and-qty {
+        flex: 1;
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+
+            @media screen and (max-width: 400px) {
+                font-size: 1.3rem;
+            }
+        }
+
+
+        .qty {
+            @media screen and (max-width: 300px) {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+
+            .decrement {
+                border: none;
+                background-color: #FF2442;
+                padding: 6px 8px 3px 8px;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: all 150ms ease-out;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+
+            }
+
+            .qty-display {
+                margin: 0 10px;
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .increment {
+                border: none;
+                background-color: blue;
+                padding: 6px 8px 3px 8px;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: all 150ms ease-out;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+
+    }
+
+    .item__price {
+        margin-right: 12px;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
